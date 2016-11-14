@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mijia.user.dao.MWeixinUserMapper">
+
+ <resultMap id="BaseResultMap" type="com.mijia.user.domain.MWeixinUser" >
+		<id column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="headimgurl" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="subscribe" property="subscribe" jdbcType="CHAR" />
+		<result column="sex" property="sex" jdbcType="CHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR" />
+		<result column="subscribe_time" property="subscribeTime" jdbcType="VARCHAR" />
+		<result column="unionid" property="unionid" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="groupid" property="groupid" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+ </resultMap>
+	
+	<insert id="insert" parameterType="com.mijia.user.domain.MWeixinUser">
+		insert into m_weixin_user (openid, user_id, nickname, headimgurl, subscribe, sex, city, country, province, language, subscribe_time, unionid, remark, groupid, create_time)
+		values (#{openid}, #{userId}, #{nickname}, #{headimgurl}, #{subscribe}, #{sex}, #{city}, #{country}, #{province}, #{language}, #{subscribeTime}, #{unionid}, #{remark}, #{groupid}, #{createTime})
+	</insert>
+
+  <select id="selectByPk" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select  * from m_weixin_user where openid = #{pk}
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mijia.user.domain.MWeixinUser" >
+      select * from m_weixin_user 
+    	<trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="openid!=null and openid!=''"> 
+						and openid = #{openid}
+					</if>
+					<if test="userId!=null and userId!=''"> 
+						and user_id = #{userId}
+					</if>
+					<if test="nickname!=null and nickname!=''"> 
+						and nickname = #{nickname}
+					</if>
+					<if test="headimgurl!=null and headimgurl!=''"> 
+						and headimgurl = #{headimgurl}
+					</if>
+					<if test="subscribe!=null and subscribe!=''"> 
+						and subscribe = #{subscribe}
+					</if>
+					<if test="sex!=null and sex!=''"> 
+						and sex = #{sex}
+					</if>
+					<if test="city!=null and city!=''"> 
+						and city = #{city}
+					</if>
+					<if test="country!=null and country!=''"> 
+						and country = #{country}
+					</if>
+					<if test="province!=null and province!=''"> 
+						and province = #{province}
+					</if>
+					<if test="language!=null and language!=''"> 
+						and language = #{language}
+					</if>
+					<if test="subscribeTime!=null and subscribeTime!=''"> 
+						and subscribe_time = #{subscribeTime}
+					</if>
+					<if test="unionid!=null and unionid!=''"> 
+						and unionid = #{unionid}
+					</if>
+					<if test="remark!=null and remark!=''"> 
+						and remark = #{remark}
+					</if>
+					<if test="groupid!=null and groupid!=''"> 
+						and groupid = #{groupid}
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						and create_time = #{createTime}
+					</if>
+		</trim>
+		<if test="orderBy != null and orderBy !=''" >
+      			order by ${orderBy}
+    	</if>
+		<if test="startRecord != -1" >
+      			limit  #{startRecord},  #{pageSize}
+    	</if>
+  </select>
+  <select id="countByExample" parameterType="com.mijia.user.domain.MWeixinUser" resultType="java.lang.Integer" >
+    select count(*) from m_weixin_user 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="openid!=null and openid!=''"> 
+						and openid = #{openid}
+					</if>
+					<if test="userId!=null and userId!=''"> 
+						and user_id = #{userId}
+					</if>
+					<if test="nickname!=null and nickname!=''"> 
+						and nickname = #{nickname}
+					</if>
+					<if test="headimgurl!=null and headimgurl!=''"> 
+						and headimgurl = #{headimgurl}
+					</if>
+					<if test="subscribe!=null and subscribe!=''"> 
+						and subscribe = #{subscribe}
+					</if>
+					<if test="sex!=null and sex!=''"> 
+						and sex = #{sex}
+					</if>
+					<if test="city!=null and city!=''"> 
+						and city = #{city}
+					</if>
+					<if test="country!=null and country!=''"> 
+						and country = #{country}
+					</if>
+					<if test="province!=null and province!=''"> 
+						and province = #{province}
+					</if>
+					<if test="language!=null and language!=''"> 
+						and language = #{language}
+					</if>
+					<if test="subscribeTime!=null and subscribeTime!=''"> 
+						and subscribe_time = #{subscribeTime}
+					</if>
+					<if test="unionid!=null and unionid!=''"> 
+						and unionid = #{unionid}
+					</if>
+					<if test="remark!=null and remark!=''"> 
+						and remark = #{remark}
+					</if>
+					<if test="groupid!=null and groupid!=''"> 
+						and groupid = #{groupid}
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						and create_time = #{createTime}
+					</if>
+		</trim>
+  	</select>
+	
+	<update id="updateByExample" parameterType="map" >
+    update m_weixin_user
+    <set >
+ 				 <if test="record.openid!=null and record.openid!=''"> 
+						openid = #{record.openid},
+					</if>
+ 				 <if test="record.userId!=null and record.userId!=''"> 
+						user_id = #{record.userId},
+					</if>
+ 				 <if test="record.nickname!=null and record.nickname!=''"> 
+						nickname = #{record.nickname},
+					</if>
+ 				 <if test="record.headimgurl!=null and record.headimgurl!=''"> 
+						headimgurl = #{record.headimgurl},
+					</if>
+ 				 <if test="record.subscribe!=null and record.subscribe!=''"> 
+						subscribe = #{record.subscribe},
+					</if>
+ 				 <if test="record.sex!=null and record.sex!=''"> 
+						sex = #{record.sex},
+					</if>
+ 				 <if test="record.city!=null and record.city!=''"> 
+						city = #{record.city},
+					</if>
+ 				 <if test="record.country!=null and record.country!=''"> 
+						country = #{record.country},
+					</if>
+ 				 <if test="record.province!=null and record.province!=''"> 
+						province = #{record.province},
+					</if>
+ 				 <if test="record.language!=null and record.language!=''"> 
+						language = #{record.language},
+					</if>
+ 				 <if test="record.subscribeTime!=null and record.subscribeTime!=''"> 
+						subscribe_time = #{record.subscribeTime},
+					</if>
+ 				 <if test="record.unionid!=null and record.unionid!=''"> 
+						unionid = #{record.unionid},
+					</if>
+ 				 <if test="record.remark!=null and record.remark!=''"> 
+						remark = #{record.remark},
+					</if>
+ 				 <if test="record.groupid!=null and record.groupid!=''"> 
+						groupid = #{record.groupid},
+					</if>
+ 				 <if test="record.createTime!=null and record.createTime!=''"> 
+						create_time = #{record.createTime},
+					</if>
+    </set>
+    <trim prefix="WHERE" prefixOverrides="AND|OR"> 
+ 			<if test="example.openid!=null and example.openid!=''">
+			   and openid = #{example.openid}
+			</if>
+			
+ 			<if test="example.userId!=null and example.userId!=''">
+			   and user_id = #{example.userId}
+			</if>
+			
+ 			<if test="example.nickname!=null and example.nickname!=''">
+			   and nickname = #{example.nickname}
+			</if>
+			
+ 			<if test="example.headimgurl!=null and example.headimgurl!=''">
+			   and headimgurl = #{example.headimgurl}
+			</if>
+			
+ 			<if test="example.subscribe!=null and example.subscribe!=''">
+			   and subscribe = #{example.subscribe}
+			</if>
+			
+ 			<if test="example.sex!=null and example.sex!=''">
+			   and sex = #{example.sex}
+			</if>
+			
+ 			<if test="example.city!=null and example.city!=''">
+			   and city = #{example.city}
+			</if>
+			
+ 			<if test="example.country!=null and example.country!=''">
+			   and country = #{example.country}
+			</if>
+			
+ 			<if test="example.province!=null and example.province!=''">
+			   and province = #{example.province}
+			</if>
+			
+ 			<if test="example.language!=null and example.language!=''">
+			   and language = #{example.language}
+			</if>
+			
+ 			<if test="example.subscribeTime!=null and example.subscribeTime!=''">
+			   and subscribe_time = #{example.subscribeTime}
+			</if>
+			
+ 			<if test="example.unionid!=null and example.unionid!=''">
+			   and unionid = #{example.unionid}
+			</if>
+			
+ 			<if test="example.remark!=null and example.remark!=''">
+			   and remark = #{example.remark}
+			</if>
+			
+ 			<if test="example.groupid!=null and example.groupid!=''">
+			   and groupid = #{example.groupid}
+			</if>
+			
+			
+	</trim>
+  </update>
+
+<update id="updateByPk" parameterType="com.mijia.user.domain.MWeixinUser" >
+    update m_weixin_user
+    <set >
+					<if test="openid!=null and openid!=''"> 
+						openid = openid,
+					</if>
+					<if test="userId!=null and userId!=''"> 
+						user_id = userId,
+					</if>
+					<if test="nickname!=null and nickname!=''"> 
+						nickname = nickname,
+					</if>
+					<if test="headimgurl!=null and headimgurl!=''"> 
+						headimgurl = headimgurl,
+					</if>
+					<if test="subscribe!=null and subscribe!=''"> 
+						subscribe = subscribe,
+					</if>
+					<if test="sex!=null and sex!=''"> 
+						sex = sex,
+					</if>
+					<if test="city!=null and city!=''"> 
+						city = city,
+					</if>
+					<if test="country!=null and country!=''"> 
+						country = country,
+					</if>
+					<if test="province!=null and province!=''"> 
+						province = province,
+					</if>
+					<if test="language!=null and language!=''"> 
+						language = language,
+					</if>
+					<if test="subscribeTime!=null and subscribeTime!=''"> 
+						subscribe_time = subscribeTime,
+					</if>
+					<if test="unionid!=null and unionid!=''"> 
+						unionid = unionid,
+					</if>
+					<if test="remark!=null and remark!=''"> 
+						remark = remark,
+					</if>
+					<if test="groupid!=null and groupid!=''"> 
+						groupid = groupid,
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						create_time = createTime,
+					</if>
+    </set>
+    where openid = #{openid};
+  </update>
+  <delete id="deleteByPk" parameterType="map" >
+    delete from m_weixin_user  where openid =  #{pk}
+  </delete>
+</mapper>
