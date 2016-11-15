@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mijia.product.dao.MProductMapper">
+
+ <resultMap id="BaseResultMap" type="com.mijia.product.domain.MProduct" >
+		<id column="product_id" property="productId" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="introduction" property="introduction" jdbcType="VARCHAR" />
+		<result column="describe" property="describe" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+ </resultMap>
+	
+	<insert id="insert" parameterType="com.mijia.product.domain.MProduct">
+		insert into m_product (product_id, type, name, introduction, describe, price, create_time)
+		values (#{productId}, #{type}, #{name}, #{introduction}, #{describe}, #{price}, #{createTime})
+	</insert>
+
+  <select id="selectByPk" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select  * from m_product where product_id = #{pk}
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mijia.product.domain.MProduct" >
+      select * from m_product 
+    	<trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="productId!=null and productId!=''"> 
+						and product_id = #{productId}
+					</if>
+					<if test="type!=null and type!=''"> 
+						and type = #{type}
+					</if>
+					<if test="name!=null and name!=''"> 
+						and name = #{name}
+					</if>
+					<if test="introduction!=null and introduction!=''"> 
+						and introduction = #{introduction}
+					</if>
+					<if test="describe!=null and describe!=''"> 
+						and describe = #{describe}
+					</if>
+					<if test="price!=null and price!=''"> 
+						and price = #{price}
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						and create_time = #{createTime}
+					</if>
+		</trim>
+		<if test="orderBy != null and orderBy !=''" >
+      			order by ${orderBy}
+    	</if>
+		<if test="startRecord != -1" >
+      			limit  #{startRecord},  #{pageSize}
+    	</if>
+  </select>
+  <select id="countByExample" parameterType="com.mijia.product.domain.MProduct" resultType="java.lang.Integer" >
+    select count(*) from m_product 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="productId!=null and productId!=''"> 
+						and product_id = #{productId}
+					</if>
+					<if test="type!=null and type!=''"> 
+						and type = #{type}
+					</if>
+					<if test="name!=null and name!=''"> 
+						and name = #{name}
+					</if>
+					<if test="introduction!=null and introduction!=''"> 
+						and introduction = #{introduction}
+					</if>
+					<if test="describe!=null and describe!=''"> 
+						and describe = #{describe}
+					</if>
+					<if test="price!=null and price!=''"> 
+						and price = #{price}
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						and create_time = #{createTime}
+					</if>
+		</trim>
+  	</select>
+	
+	<update id="updateByExample" parameterType="map" >
+    update m_product
+    <set >
+ 				 <if test="record.productId!=null and record.productId!=''"> 
+						product_id = #{record.productId},
+					</if>
+ 				 <if test="record.type!=null and record.type!=''"> 
+						type = #{record.type},
+					</if>
+ 				 <if test="record.name!=null and record.name!=''"> 
+						name = #{record.name},
+					</if>
+ 				 <if test="record.introduction!=null and record.introduction!=''"> 
+						introduction = #{record.introduction},
+					</if>
+ 				 <if test="record.describe!=null and record.describe!=''"> 
+						describe = #{record.describe},
+					</if>
+ 				 <if test="record.price!=null and record.price!=''"> 
+						price = #{record.price},
+					</if>
+ 				 <if test="record.createTime!=null and record.createTime!=''"> 
+						create_time = #{record.createTime},
+					</if>
+    </set>
+    <trim prefix="WHERE" prefixOverrides="AND|OR"> 
+ 			<if test="example.productId!=null and example.productId!=''">
+			   and product_id = #{example.productId}
+			</if>
+			
+ 			<if test="example.type!=null and example.type!=''">
+			   and type = #{example.type}
+			</if>
+			
+ 			<if test="example.name!=null and example.name!=''">
+			   and name = #{example.name}
+			</if>
+			
+ 			<if test="example.introduction!=null and example.introduction!=''">
+			   and introduction = #{example.introduction}
+			</if>
+			
+ 			<if test="example.describe!=null and example.describe!=''">
+			   and describe = #{example.describe}
+			</if>
+			
+ 			<if test="example.price!=null and example.price!=''">
+			   and price = #{example.price}
+			</if>
+			
+			
+	</trim>
+  </update>
+
+<update id="updateByPk" parameterType="com.mijia.product.domain.MProduct" >
+    update m_product
+    <set >
+					<if test="productId!=null and productId!=''"> 
+						product_id = productId,
+					</if>
+					<if test="type!=null and type!=''"> 
+						type = type,
+					</if>
+					<if test="name!=null and name!=''"> 
+						name = name,
+					</if>
+					<if test="introduction!=null and introduction!=''"> 
+						introduction = introduction,
+					</if>
+					<if test="describe!=null and describe!=''"> 
+						describe = describe,
+					</if>
+					<if test="price!=null and price!=''"> 
+						price = price,
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						create_time = createTime,
+					</if>
+    </set>
+    where product_id = #{productId};
+  </update>
+  <delete id="deleteByPk" parameterType="map" >
+    delete from m_product  where product_id =  #{pk}
+  </delete>
+</mapper>

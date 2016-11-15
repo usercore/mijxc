@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mijia.deliver.dao.MDeliverMapper">
+
+ <resultMap id="BaseResultMap" type="com.mijia.deliver.domain.MDeliver" >
+		<id column="m_deliver_id" property="mDeliverId" jdbcType="VARCHAR" />
+		<result column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<result column="consignee" property="consignee" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="county" property="county" jdbcType="VARCHAR" />
+		<result column="area_detailed" property="areaDetailed" jdbcType="VARCHAR" />
+		<result column="cellphone" property="cellphone" jdbcType="VARCHAR" />
+		<result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="is_receive" property="isReceive" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+ </resultMap>
+	
+	<insert id="insert" parameterType="com.mijia.deliver.domain.MDeliver">
+		insert into m_deliver (m_deliver_id, order_id, consignee, province, city, county, area_detailed, cellphone, postal_code, phone, is_receive, create_time)
+		values (#{mDeliverId}, #{orderId}, #{consignee}, #{province}, #{city}, #{county}, #{areaDetailed}, #{cellphone}, #{postalCode}, #{phone}, #{isReceive}, #{createTime})
+	</insert>
+
+  <select id="selectByPk" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select  * from m_deliver where order_id = #{pk}
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mijia.deliver.domain.MDeliver" >
+      select * from m_deliver 
+    	<trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="mDeliverId!=null and mDeliverId!=''"> 
+						and m_deliver_id = #{mDeliverId}
+					</if>
+					<if test="orderId!=null and orderId!=''"> 
+						and order_id = #{orderId}
+					</if>
+					<if test="consignee!=null and consignee!=''"> 
+						and consignee = #{consignee}
+					</if>
+					<if test="province!=null and province!=''"> 
+						and province = #{province}
+					</if>
+					<if test="city!=null and city!=''"> 
+						and city = #{city}
+					</if>
+					<if test="county!=null and county!=''"> 
+						and county = #{county}
+					</if>
+					<if test="areaDetailed!=null and areaDetailed!=''"> 
+						and area_detailed = #{areaDetailed}
+					</if>
+					<if test="cellphone!=null and cellphone!=''"> 
+						and cellphone = #{cellphone}
+					</if>
+					<if test="postalCode!=null and postalCode!=''"> 
+						and postal_code = #{postalCode}
+					</if>
+					<if test="phone!=null and phone!=''"> 
+						and phone = #{phone}
+					</if>
+					<if test="isReceive!=null and isReceive!=''"> 
+						and is_receive = #{isReceive}
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						and create_time = #{createTime}
+					</if>
+		</trim>
+		<if test="orderBy != null and orderBy !=''" >
+      			order by ${orderBy}
+    	</if>
+		<if test="startRecord != -1" >
+      			limit  #{startRecord},  #{pageSize}
+    	</if>
+  </select>
+  <select id="countByExample" parameterType="com.mijia.deliver.domain.MDeliver" resultType="java.lang.Integer" >
+    select count(*) from m_deliver 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="mDeliverId!=null and mDeliverId!=''"> 
+						and m_deliver_id = #{mDeliverId}
+					</if>
+					<if test="orderId!=null and orderId!=''"> 
+						and order_id = #{orderId}
+					</if>
+					<if test="consignee!=null and consignee!=''"> 
+						and consignee = #{consignee}
+					</if>
+					<if test="province!=null and province!=''"> 
+						and province = #{province}
+					</if>
+					<if test="city!=null and city!=''"> 
+						and city = #{city}
+					</if>
+					<if test="county!=null and county!=''"> 
+						and county = #{county}
+					</if>
+					<if test="areaDetailed!=null and areaDetailed!=''"> 
+						and area_detailed = #{areaDetailed}
+					</if>
+					<if test="cellphone!=null and cellphone!=''"> 
+						and cellphone = #{cellphone}
+					</if>
+					<if test="postalCode!=null and postalCode!=''"> 
+						and postal_code = #{postalCode}
+					</if>
+					<if test="phone!=null and phone!=''"> 
+						and phone = #{phone}
+					</if>
+					<if test="isReceive!=null and isReceive!=''"> 
+						and is_receive = #{isReceive}
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						and create_time = #{createTime}
+					</if>
+		</trim>
+  	</select>
+	
+	<update id="updateByExample" parameterType="map" >
+    update m_deliver
+    <set >
+ 				 <if test="record.mDeliverId!=null and record.mDeliverId!=''"> 
+						m_deliver_id = #{record.mDeliverId},
+					</if>
+ 				 <if test="record.orderId!=null and record.orderId!=''"> 
+						order_id = #{record.orderId},
+					</if>
+ 				 <if test="record.consignee!=null and record.consignee!=''"> 
+						consignee = #{record.consignee},
+					</if>
+ 				 <if test="record.province!=null and record.province!=''"> 
+						province = #{record.province},
+					</if>
+ 				 <if test="record.city!=null and record.city!=''"> 
+						city = #{record.city},
+					</if>
+ 				 <if test="record.county!=null and record.county!=''"> 
+						county = #{record.county},
+					</if>
+ 				 <if test="record.areaDetailed!=null and record.areaDetailed!=''"> 
+						area_detailed = #{record.areaDetailed},
+					</if>
+ 				 <if test="record.cellphone!=null and record.cellphone!=''"> 
+						cellphone = #{record.cellphone},
+					</if>
+ 				 <if test="record.postalCode!=null and record.postalCode!=''"> 
+						postal_code = #{record.postalCode},
+					</if>
+ 				 <if test="record.phone!=null and record.phone!=''"> 
+						phone = #{record.phone},
+					</if>
+ 				 <if test="record.isReceive!=null and record.isReceive!=''"> 
+						is_receive = #{record.isReceive},
+					</if>
+ 				 <if test="record.createTime!=null and record.createTime!=''"> 
+						create_time = #{record.createTime},
+					</if>
+    </set>
+    <trim prefix="WHERE" prefixOverrides="AND|OR"> 
+ 			<if test="example.mDeliverId!=null and example.mDeliverId!=''">
+			   and m_deliver_id = #{example.mDeliverId}
+			</if>
+			
+ 			<if test="example.orderId!=null and example.orderId!=''">
+			   and order_id = #{example.orderId}
+			</if>
+			
+ 			<if test="example.consignee!=null and example.consignee!=''">
+			   and consignee = #{example.consignee}
+			</if>
+			
+ 			<if test="example.province!=null and example.province!=''">
+			   and province = #{example.province}
+			</if>
+			
+ 			<if test="example.city!=null and example.city!=''">
+			   and city = #{example.city}
+			</if>
+			
+ 			<if test="example.county!=null and example.county!=''">
+			   and county = #{example.county}
+			</if>
+			
+ 			<if test="example.areaDetailed!=null and example.areaDetailed!=''">
+			   and area_detailed = #{example.areaDetailed}
+			</if>
+			
+ 			<if test="example.cellphone!=null and example.cellphone!=''">
+			   and cellphone = #{example.cellphone}
+			</if>
+			
+ 			<if test="example.postalCode!=null and example.postalCode!=''">
+			   and postal_code = #{example.postalCode}
+			</if>
+			
+ 			<if test="example.phone!=null and example.phone!=''">
+			   and phone = #{example.phone}
+			</if>
+			
+ 			<if test="example.isReceive!=null and example.isReceive!=''">
+			   and is_receive = #{example.isReceive}
+			</if>
+			
+			
+	</trim>
+  </update>
+
+<update id="updateByPk" parameterType="com.mijia.deliver.domain.MDeliver" >
+    update m_deliver
+    <set >
+					<if test="mDeliverId!=null and mDeliverId!=''"> 
+						m_deliver_id = mDeliverId,
+					</if>
+					<if test="orderId!=null and orderId!=''"> 
+						order_id = orderId,
+					</if>
+					<if test="consignee!=null and consignee!=''"> 
+						consignee = consignee,
+					</if>
+					<if test="province!=null and province!=''"> 
+						province = province,
+					</if>
+					<if test="city!=null and city!=''"> 
+						city = city,
+					</if>
+					<if test="county!=null and county!=''"> 
+						county = county,
+					</if>
+					<if test="areaDetailed!=null and areaDetailed!=''"> 
+						area_detailed = areaDetailed,
+					</if>
+					<if test="cellphone!=null and cellphone!=''"> 
+						cellphone = cellphone,
+					</if>
+					<if test="postalCode!=null and postalCode!=''"> 
+						postal_code = postalCode,
+					</if>
+					<if test="phone!=null and phone!=''"> 
+						phone = phone,
+					</if>
+					<if test="isReceive!=null and isReceive!=''"> 
+						is_receive = isReceive,
+					</if>
+					<if test="createTime!=null and createTime!=''"> 
+						create_time = createTime,
+					</if>
+    </set>
+    where order_id = #{orderId};
+  </update>
+  <delete id="deleteByPk" parameterType="map" >
+    delete from m_deliver  where order_id =  #{pk}
+  </delete>
+</mapper>
